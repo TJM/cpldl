@@ -1,5 +1,5 @@
 <div class="course-progress">
-  <header><%= t('completed_courses_page.course') %>: <%= course.title %></header>
+  <header><%= t('completed_courses_page.course') %>: <%= @course.title %></header>
   <div class="progress-bar">
     <span class="meter" style="width: <%= course_progress.percent_complete %>%;"></span>
     <% lesson_count = course.lessons.count %>

@@ -49,7 +49,12 @@ class CourseProgress < ActiveRecord::Base
     # TODO: This is an N+1 query, it needs to be done better
     last_completed_lesson_order = 0
     completed_lessons.each do |l|
-      lesson_order = course.lessons.find(l.lesson_id).lesson_order
+      lesson = course.lessons.find(l.lesson_id)
+      if lesson.nil?
+        next
+      else
+        lesson_order = lesson.lesson_order
+      end
       last_completed_lesson_order = lesson_order if lesson_order >= last_completed_lesson_order
     end
     if last_completed_lesson_order > 0
